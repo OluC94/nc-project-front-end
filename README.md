@@ -25,7 +25,7 @@
 #### Mac
 
 - Open XCode, got to Preferences -> Location, ensure that the latest CLI is enabled
-- Open the iphone simulator but going to Developer Tools -> Simulator
+- Open the iphone simulator by going to Developer Tools -> Simulator
 - In the simulator press CMD + D to bring up the developer menu
 
 #### Linux
