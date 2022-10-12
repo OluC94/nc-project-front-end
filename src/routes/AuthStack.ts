@@ -3,11 +3,11 @@ import { createAppContainer } from "react-navigation";
 import { SignUp, Login } from "../screens";
 
 const screens = {
-  SignUp: {
-    screen: SignUp,
-  },
   Login: {
     screen: Login,
+  },
+  SignUp: {
+    screen: SignUp,
   },
 };
 

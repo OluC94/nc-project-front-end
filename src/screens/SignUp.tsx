@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Button, Input } from "../components";
 
@@ -15,17 +16,32 @@ const SignUp: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   // change the console logs below to the set functions
 
+  const handleSignUp = async () => {
+    if (name && email && password) {
+      try {
+        // create a user const that awaits the user creation in the DB
+        // if (user) save the information to the database)
+
+        Alert.alert("signup complete");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      Alert.alert("Error, missing fields");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Signup screen</Text>
-      <Input placeholder="Name" onChangeText={(text) => console.log(text)} />
-      <Input placeholder="Email" onChangeText={(text) => console.log(text)} />
+      <Text>SignUp screen</Text>
+      <Input placeholder="Name" onChangeText={(text) => setName(text)} />
+      <Input placeholder="Email" onChangeText={(text) => setEmail(text)} />
       <Input
         placeholder="Password"
         secureTextEntry
-        onChangeText={(text) => console.log(text)}
+        onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Sign Up" onPress={() => alert("Signed up complete")} />
+      <Button title="Sign Up" onPress={handleSignUp} />
       <View style={styles.loginText}>
         <Text style={{ marginHorizontal: 5 }}>Already have an account?</Text>
         <TouchableOpacity

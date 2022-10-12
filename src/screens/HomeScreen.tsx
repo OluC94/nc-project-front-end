@@ -1,21 +1,17 @@
-import React from "react";
-import { SafeAreaView, Text, Button, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen({ navigation }: { navigation: object }) {
-  //   type NavigationKey = keyof typeof navigation;
-  //   const nav = "navigate" as NavigationKey;
-  console.log(Object.keys(navigation));
-
-  function handlePress(): void {
-    // navigation.navigate("UserSignUp");
-  }
-
+const HomeScreen: FC = () => {
   return (
     <SafeAreaView style={styles.container}>
+      {/* import Button from components, set title to "Sign Out" and onPress to handler function */}
       <Text>Home page on successful user login</Text>
     </SafeAreaView>
   );
-}
+};
+
+export default HomeScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

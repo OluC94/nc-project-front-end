@@ -48,3 +48,11 @@
 - Finish then press play to run device
 
 #### Linux
+
+### Notes on project structure
+
+- Main Nav houses the AuthStack and AppStack
+- AuthStack houses login + signup screens
+- Appstack houses HomeScreen + Event screens
+- all screens and components are exported into the index for their relative folder
+- importing screens/components -> `import {ScreenName} from "../screens"`

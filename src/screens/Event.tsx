@@ -1,13 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-export default function Event() {
+const Event: FC = () => {
   return (
     <View style={styles.container}>
       <Text>Event Page</Text>
     </View>
   );
-}
+};
+
+export default Event;
 
 const styles = StyleSheet.create({
   container: {

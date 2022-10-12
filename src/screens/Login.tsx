@@ -1,10 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   Text,
   View,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Button, Input } from "../components";
 
@@ -12,16 +13,24 @@ const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
+  const handleLogin = async () => {
+    if (email && password) {
+      // create user const that awaits mongodb signin functionality
+    } else {
+      Alert.alert("Error, missing fields");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Log In screen</Text>
-      <Input placeholder="Email" onChangeText={(text) => console.log(text)} />
+      <Text>Log In screen, </Text>
+      <Input placeholder="Email" onChangeText={(text) => setEmail(text)} />
       <Input
         placeholder="Password"
         secureTextEntry
-        onChangeText={(text) => console.log(text)}
+        onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Log in" onPress={() => alert("Signed up complete")} />
+      <Button title="Log in" onPress={handleLogin} />
       <View style={styles.loginText}>
         <Text style={{ marginHorizontal: 5 }}>Don't have an account?</Text>
         <TouchableOpacity
