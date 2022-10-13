@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { SafeAreaView, Text, StyleSheet } from "react-native";
 
-const HomeScreen: FC = () => {
+const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* import Button from components, set title to "Sign Out" and onPress to handler function */}
-      <Text>Home page on successful user login</Text>
+      <Text>Hello {props.navigation.state.params.name}!</Text>
     </SafeAreaView>
   );
 };

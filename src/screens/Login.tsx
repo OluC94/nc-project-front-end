@@ -6,8 +6,10 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
+  AsyncStorage,
 } from "react-native";
 import { Button, Input } from "../components";
+import { get_users, user_login } from "../utils/user_api";
 
 const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
@@ -15,7 +17,26 @@ const Login: FC = (props) => {
 
   const handleLogin = async () => {
     if (email && password) {
-      // create user const that awaits mongodb signin functionality
+      user_login({
+        email: email,
+        password: password,
+      }).then(async (result) => {
+        if(result.status === 200) {
+         await AsyncStorage.setItem('key', result.data.token)
+         get_users().then(async (result2) => {
+          props.navigation.navigate("HomeScreen", {name: result2.data.user.name})
+         })
+        }
+      })
+    } else {
+      Alert.alert("Error, missing fields");
+    }
+  };
+
+  const getUsers = async () => {
+    if (email && password) {
+      get_users().then(async (result) => {
+      })
     } else {
       Alert.alert("Error, missing fields");
     }
@@ -31,6 +52,8 @@ const Login: FC = (props) => {
         onChangeText={(text) => setPassword(text)}
       />
       <Button title="Log in" onPress={handleLogin} />
+      <Button title="TEST" onPress={getUsers} />
+
       <View style={styles.loginText}>
         <Text style={{ marginHorizontal: 5 }}>Don't have an account?</Text>
         <TouchableOpacity
