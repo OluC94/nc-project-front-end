@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-const Event: FC = () => {
+const Event: FC = (props) => {
   return (
     <View style={styles.container}>
       <Text>Event Page</Text>
