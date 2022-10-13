@@ -1,25 +1,34 @@
 import React, { FC } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import EventCard from "./EventCard";
 import { sampleData } from "../utils";
 
-interface Event {
-  title: string;
-  date: string;
-  details: string;
-  followers: number;
-}
-
-const { data } = sampleData;
-
-const EventList: FC<Event> = (props) => {
-  console.log(data[0][3]);
+const EventList: FC = (props) => {
+  const { data } = sampleData;
+  const { navigate } = props;
   return (
     <View>
-      <Text>Event list</Text>
-      <Text>{props.title}</Text>
-      <Text>Date and time: {props.date}</Text>
-      <Text>Info: {props.details}</Text>
-      <Text>{props.followers} followers</Text>
+      <Text>Event Cards:</Text>
+      <View>
+        {data.map((dataPoint) => {
+          return (
+            <View>
+              <EventCard
+                title="Meteor Shower"
+                date={dataPoint[3]}
+                details="Info on the meteor shower, ... "
+                followers={5}
+              />
+              <TouchableOpacity
+                style={{ marginHorizontal: 5 }}
+                onPress={() => navigate("Event")}
+              >
+                <Text style={{ color: "rgba(81,135,200,1)" }}>More Info</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 };

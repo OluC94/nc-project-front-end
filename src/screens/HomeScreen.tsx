@@ -2,17 +2,15 @@ import React, { FC } from "react";
 import { SafeAreaView, Text, StyleSheet, View } from "react-native";
 import { Button, EventList } from "../components";
 
-const HomeScreen: FC = () => {
+const HomeScreen: FC = (props) => {
+  const { navigation } = props;
+  const { navigate } = navigation;
+
   return (
     <SafeAreaView style={styles.container}>
       <Text>Home page on successful user login</Text>
       <View>
-        <EventList
-          title="Meteor Shower"
-          date="2022-10-16"
-          details="Info on the meteor shower, it's name "
-          followers={5}
-        />
+        <EventList navigate={navigate} />
       </View>
       <Button
         title="Sign Out"
