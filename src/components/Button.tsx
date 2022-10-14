@@ -14,6 +14,7 @@ interface Props {
   title: string;
   onPress: () => void;
   navigation?: any;
+  style?: any;
 }
 
 const Button: FC<Props> = (props) => {
