@@ -1,10 +1,24 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, SafeAreaView, Button } from "react-native";
+import { StyleSheet, Text, SafeAreaView, Button, AsyncStorage } from "react-native";
 import { MainNav } from "./routes/MainNav";
+import axios from "axios";
 
 export default function App() {
   console.log("running");
+
+  axios.interceptors.request.use(async function (config) {
+    let token = await AsyncStorage.getItem('key');
+
+    if(config.headers){
+      config.headers.Authorization = `bearer ${token}`;
+    }
+
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
 
   return <MainNav />;
 }
