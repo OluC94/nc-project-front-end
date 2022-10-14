@@ -60,3 +60,7 @@
 ### node modules error
 
 - make user node_modules/expo/AppEntry.js contains `import App from '../../src/App';`
+
+### Camera Roll Access
+
+- run `npx expo install expo-image-picker`
