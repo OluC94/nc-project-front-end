@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { SafeAreaView, Text, StyleSheet, View } from "react-native";
+import { SafeAreaView, Text, StyleSheet, View, AsyncStorage } from "react-native";
 import { Button, EventList } from "../components";
 import { useState } from "react";
 import { EventContext } from "../contexts";
@@ -10,18 +10,22 @@ const HomeScreen: FC = (props) => {
   const { navigate } = navigation;
   console.log("event id -->", event);
 
+  const handleSignOut = async () => {
+    let token = await AsyncStorage.getItem('key');
+    if(token) {
+      await AsyncStorage.removeItem('key')
+      props.navigation.navigate("Login")
+    }
+  }
 
+ // {props.navigation.state.params.name}
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hello {props.navigation.state.params.name}!</Text>
+      <Text>Hello!</Text>
       <View>
         <EventList navigate={navigate} />
       </View>
-      <Button
-        title="Sign Out"
-        onPress={() => {
-          alert("Sign Out clicked");
-        }}
+      <Button title="Sign Out" onPress={handleSignOut}
       />
     </SafeAreaView>
   );

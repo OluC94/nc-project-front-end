@@ -11,7 +11,6 @@ export default function App() {
 
   axios.interceptors.request.use(async function (config) {
     let token = await AsyncStorage.getItem('key');
-
     if(config.headers){
       config.headers.Authorization = `bearer ${token}`;
     }
