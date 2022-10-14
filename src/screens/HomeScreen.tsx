@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { SafeAreaView, Text, StyleSheet, View, AsyncStorage } from "react-native";
+import { SafeAreaView, Text, StyleSheet, View, AsyncStorage, ScrollView } from "react-native";
 import { Button, EventList } from "../components";
 import { useState } from "react";
 import { EventContext } from "../contexts";
@@ -21,12 +21,14 @@ const HomeScreen: FC = (props) => {
  // {props.navigation.state.params.name}
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <Text>Hello!</Text>
       <View>
         <EventList navigate={navigate} />
       </View>
       <Button title="Sign Out" onPress={handleSignOut}
       />
+      </ScrollView>
     </SafeAreaView>
   );
 };
