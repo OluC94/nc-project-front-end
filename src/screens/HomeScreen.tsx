@@ -1,11 +1,28 @@
-import React, { FC } from "react";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
+import React, { FC, useContext } from "react";
+import { SafeAreaView, Text, StyleSheet, View } from "react-native";
+import { Button, EventList } from "../components";
+import { useState } from "react";
+import { EventContext } from "../contexts";
 
 const HomeScreen: FC = (props) => {
+  const { event } = useContext(EventContext);
+  const { navigation } = props;
+  const { navigate } = navigation;
+  console.log("event id -->", event);
+
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* import Button from components, set title to "Sign Out" and onPress to handler function */}
       <Text>Hello {props.navigation.state.params.name}!</Text>
+      <View>
+        <EventList navigate={navigate} />
+      </View>
+      <Button
+        title="Sign Out"
+        onPress={() => {
+          alert("Sign Out clicked");
+        }}
+      />
     </SafeAreaView>
   );
 };

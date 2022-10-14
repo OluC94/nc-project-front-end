@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, SafeAreaView, Button, AsyncStorage } from "react-native";
 import { MainNav } from "./routes/MainNav";
+import { EventContext } from "./contexts";
 import axios from "axios";
 
 export default function App() {
   console.log("running");
+  const [event, setEvent] = useState<string | null>(null);
 
   axios.interceptors.request.use(async function (config) {
     let token = await AsyncStorage.getItem('key');
@@ -20,5 +22,10 @@ export default function App() {
     return Promise.reject(error);
   });
 
-  return <MainNav />;
+  return (
+    <EventContext.Provider value={{ event, setEvent }}>
+      <MainNav />
+    </EventContext.Provider>
+  );
+
 }

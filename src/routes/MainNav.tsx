@@ -6,7 +6,7 @@ import AuthStack from "./AuthStack";
 // import database
 
 export const MainNav: FC = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>("user");
 
   // create a function that determines whether user has logged in and sets user
   // const handleUserChange = () => {
