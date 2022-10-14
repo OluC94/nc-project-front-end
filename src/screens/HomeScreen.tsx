@@ -5,15 +5,13 @@ import { useState } from "react";
 import { EventContext } from "../contexts";
 
 const HomeScreen: FC = (props) => {
-  const { event } = useContext(EventContext);
+  const { eventID } = useContext(EventContext);
   const { navigation } = props;
   const { navigate } = navigation;
-  console.log("event id -->", event);
-
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hello {props.navigation.state.params.name}!</Text>
+      <Text>Hello {navigation.state.params.name}!</Text>
       <View>
         <EventList navigate={navigate} />
       </View>
