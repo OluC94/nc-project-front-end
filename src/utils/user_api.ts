@@ -1,6 +1,20 @@
 import { AsyncStorage } from "react-native";
 import spaceApi from "./api";
 
+export const user_register = async data => {
+    try {
+        const result = await spaceApi('/users/register', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            data: data
+        });
+        return result;
+    } catch (error: any) {
+        return error.response.data
+    }
+}
 export const user_login = async data => {
     try {
         const result = await spaceApi('/users/login', {

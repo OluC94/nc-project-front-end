@@ -7,8 +7,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  AsyncStorage,
 } from "react-native";
 import { Button, Input } from "../components";
+import { user_register, get_users } from "../utils/user_api";
 
 const SignUp: FC = (props) => {
   const [name, setName] = useState<string | null>(null);
@@ -18,18 +20,32 @@ const SignUp: FC = (props) => {
 
   const handleSignUp = async () => {
     if (name && email && password) {
-      try {
-        // create a user const that awaits the user creation in the DB
-        // if (user) save the information to the database)
-
-        Alert.alert("signup complete");
-      } catch (error) {
-        console.log(error);
-      }
+      user_register({
+        name: name,
+        email: email,
+        password: password,
+      }).then(async (result) => {
+        if(result.status === 201) {
+         await AsyncStorage.setItem('key', result.data.token)
+         get_users().then(async (result2) => {
+          props.navigation.navigate("HomeScreen", {name: result2.data.user.name})
+         })
+        }
+      })
     } else {
       Alert.alert("Error, missing fields");
     }
   };
+
+  const getUsers = async () => {
+    if (email && password) {
+      get_users().then(async (result) => {
+      })
+    } else {
+      Alert.alert("Error, missing fields");
+    }
+  };
+
 
   return (
     <SafeAreaView style={styles.container}>

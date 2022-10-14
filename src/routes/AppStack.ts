@@ -1,8 +1,14 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { Event, HomeScreen } from "../screens";
+import { Login, SignUp, Event, HomeScreen } from "../screens";
 
 const screens = {
+  Login: {
+    screen: Login,
+  },
+  SignUp: {
+    screen: SignUp,
+  },
   HomeScreen: {
     screen: HomeScreen,
   },

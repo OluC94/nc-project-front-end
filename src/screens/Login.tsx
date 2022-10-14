@@ -52,7 +52,6 @@ const Login: FC = (props) => {
         onChangeText={(text) => setPassword(text)}
       />
       <Button title="Log in" onPress={handleLogin} />
-      <Button title="TEST" onPress={getUsers} />
 
       <View style={styles.loginText}>
         <Text style={{ marginHorizontal: 5 }}>Don't have an account?</Text>
