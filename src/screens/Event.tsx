@@ -9,25 +9,16 @@ import {
   Input,
 } from "../components";
 import { sampleData } from "../utils";
+import { UserContext } from "../contexts/UserContext";
 
 const Event: FC = (props) => {
   const [newComm, setNewComm] = useState<string | null>(null);
   const { eventID } = useContext(EventContext);
+  const { username } = useContext(UserContext);
   const { data } = sampleData;
   const [eventToDisplay]: any = data.filter(
     (dataPoint: any) => dataPoint[2] === eventID
   );
-
-  const handleAddComm = async () => {
-    // render optimistically
-
-    if (newComm) {
-      // implement comment addition
-      alert("comment added!");
-    } else {
-      alert("Cannot submit a blank comment");
-    }
-  };
 
   const handleAddInterest = async () => {
     // implement method that adds event to user's interests
@@ -47,11 +38,6 @@ const Event: FC = (props) => {
       </View>
       <CamAccess />
       <View>
-        <Input
-          placeholder="Add your comment..."
-          onChangeText={(text) => setNewComm(text)}
-        />
-        <Button title="Add comment" onPress={handleAddComm} />
         <CommentList />
       </View>
     </View>

@@ -10,16 +10,19 @@ import {
 import { MainNav } from "./routes/MainNav";
 import { EventContext } from "./contexts";
 import axios from "axios";
+import { UserContext } from "./contexts/UserContext";
 
 export default function App() {
   console.log("running");
   const [eventID, setEventID] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
-  axios.interceptors.request.use(async function (config) {
-    let token = await AsyncStorage.getItem('key');
-    if(config.headers){
-      config.headers.Authorization = `bearer ${token}`;
-    }
+  axios.interceptors.request.use(
+    async function (config) {
+      let token = await AsyncStorage.getItem("key");
+      if (config.headers) {
+        config.headers.Authorization = `bearer ${token}`;
+      }
 
       return config;
     },
@@ -31,7 +34,9 @@ export default function App() {
 
   return (
     <EventContext.Provider value={{ eventID, setEventID }}>
-      <MainNav />
+      <UserContext.Provider value={{ username, setUsername }}>
+        <MainNav />
+      </UserContext.Provider>
     </EventContext.Provider>
   );
 }

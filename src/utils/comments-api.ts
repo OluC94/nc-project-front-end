@@ -1,7 +1,6 @@
 import spaceApi from "./api";
 
 const fetchEventComments = (event_id: string) => {
-  console.log(event_id);
   return spaceApi
     .get(`/events`)
     .then(({ data }) => {
@@ -11,8 +10,19 @@ const fetchEventComments = (event_id: string) => {
       return eventComms;
     })
     .catch((err) => {
-      console.log(err);
+      return err;
     });
 };
 
-export default fetchEventComments;
+const addComment = (event_id: string, data: object) => {
+  return spaceApi
+    .post(`/events/${event_id}/comment`, data)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+export { fetchEventComments, addComment };
