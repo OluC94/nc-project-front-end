@@ -1,12 +1,26 @@
-import React, { FC, useContext } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { FC, useContext, useEffect, useState} from "react";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import EventCard from "./EventCard";
-import { sampleData } from "../utils";
 import { EventContext } from "../contexts";
+import { event_list } from "../utils/events_api";
+import spaceApi from "../utils/api";
+import axios from "axios";
+
+
+
 
 const EventList: FC = ({ navigate }) => {
-  const { data } = sampleData;
-  const { setEvent } = useContext(EventContext);
+   const { setEvent } = useContext(EventContext);
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    event_list().then(x => {
+      console.log('event_list', x);
+      setData(x.data.events)
+    })
+  }, []);
+  
+
   const handleEventSelection = (event_id: string) => {
     setEvent(event_id);
     navigate("Event");

@@ -12,6 +12,9 @@ const screens = {
   HomeScreen: {
     screen: HomeScreen,
   },
+  EventAdder: {
+    screen: Event
+  }
 };
 
 const AuthStack = createStackNavigator(screens);

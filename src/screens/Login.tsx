@@ -15,6 +15,11 @@ const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
+
+  interface Props {
+    navigation: any
+  }
+
   const handleLogin = async () => {
     if (email && password) {
       user_login({
