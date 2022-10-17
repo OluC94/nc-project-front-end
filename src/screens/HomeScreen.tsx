@@ -5,10 +5,9 @@ import { useState } from "react";
 import { EventContext } from "../contexts";
 
 const HomeScreen: FC = (props) => {
-  const { event } = useContext(EventContext);
+  const { eventID } = useContext(EventContext);
   const { navigation } = props;
   const { navigate } = navigation;
-  console.log("event id -->", event);
 
   const handleSignOut = async () => {
     let token = await AsyncStorage.getItem('key');

@@ -6,9 +6,9 @@ import { EventContext } from "../contexts";
 
 const EventList: FC = ({ navigate }) => {
   const { data } = sampleData;
-  const { setEvent } = useContext(EventContext);
+  const { setEventID } = useContext(EventContext);
   const handleEventSelection = (event_id: string) => {
-    setEvent(event_id);
+    setEventID(event_id);
     navigate("Event");
   };
 
