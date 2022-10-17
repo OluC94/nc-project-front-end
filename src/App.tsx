@@ -15,13 +15,11 @@ export default function App() {
   console.log("running");
   const [eventID, setEventID] = useState<string | null>(null);
 
-  axios.interceptors.request.use(
-    async function (config) {
-      let token = await AsyncStorage.getItem("key");
-
-      if (config.headers) {
-        config.headers.Authorization = `bearer ${token}`;
-      }
+  axios.interceptors.request.use(async function (config) {
+    let token = await AsyncStorage.getItem('key');
+    if(config.headers){
+      config.headers.Authorization = `bearer ${token}`;
+    }
 
       return config;
     },
