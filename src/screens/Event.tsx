@@ -28,15 +28,6 @@ const Event: FC = (props) => {
     alert("This event has been added to your list of interests");
   };
 
-  const handleLike = async () => {
-    // implement method that adds event to user's interests
-    alert("Like pressed\nNotify me may make like/dislike redundant?");
-  };
-  const handleDislike = async () => {
-    // implement method that adds event to user's interests
-    alert("Dislike pressed\nNotify me may make like/dislike redundant?");
-  };
-
   return (
     <View style={styles.container}>
       <View>
@@ -47,10 +38,6 @@ const Event: FC = (props) => {
       </View>
       <View>
         <Button title="Notify Me" onPress={handleAddInterest} />
-      </View>
-      <View style={{ display: "flex", flexDirection: "row" }}>
-        <Button style={{ border: 20 }} title="👍" onPress={handleLike} />
-        <Button style={{ margin: 20 }} title="👎" onPress={handleDislike} />
       </View>
       <CamAccess />
       <View>
