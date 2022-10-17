@@ -11,7 +11,7 @@ import axios from "axios";
 
 const EventList: FC = ({ navigate }) => {
 
-   const { setEvent } = useContext(EventContext);
+  //  const { setEvent } = useContext(EventContext);
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -27,23 +27,23 @@ const EventList: FC = ({ navigate }) => {
     setEventID(event_id);
     navigate("Event");
   };
-
+  console.log(data)
   return (
     <View>
       <Text>Event Cards:</Text>
       <View>
-        {data.map((dataPoint) => {
+        {data.map((dataPoint, i) => {
           return (
-            <View key={dataPoint[2]}>
+            <View key={dataPoint._id}>
               <EventCard
-                title="Meteor Shower"
-                date={dataPoint[3]}
-                details="Info on the meteor shower, ... "
-                followers={5}
+                title={dataPoint.event_name}
+                date={dataPoint.time}
+                details={dataPoint.details}
+                followers={4}
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
-                onPress={() => handleEventSelection(dataPoint[2])}
+                onPress={() => handleEventSelection(dataPoint._id)}
               >
                 <Text style={{ color: "rgba(81,135,200,1)" }}>More Info</Text>
               </TouchableOpacity>

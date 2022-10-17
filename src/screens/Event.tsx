@@ -1,16 +1,25 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { EventContext } from "../contexts";
 import { Button, CamAccess, EventCard, Input } from "../components";
 import { sampleData } from "../utils";
+import { event_list } from "../utils/events_api";
 
 const Event: FC = (props) => {
   const [newComm, setNewComm] = useState<string | null>(null);
   const { eventID } = useContext(EventContext);
-  const { data } = sampleData;
-  const [eventToDisplay]: any = data.filter(
-    (dataPoint: any) => dataPoint[2] === eventID
-  );
+  const [eventToDisplay, setEventToDisplay] = useState([])
+
+  useEffect(() => {
+    event_list().then(x => {
+      console.log('event_list', x);
+      let event = x.data.events.filter(
+        (dataPoint: any) => dataPoint._id === eventID
+      )[0];
+      console.log('event', event)
+      setEventToDisplay(event)
+    })
+  }, []);
 
   const handleAddComm = async () => {
     // render optimistically
@@ -40,9 +49,9 @@ const Event: FC = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Event Title</Text>
-        <Text>Date: {eventToDisplay[3]}</Text>
-        <Text>Event Details</Text>
+        <Text>Event Title: {eventToDisplay.title}</Text>
+        <Text>Date: {eventToDisplay.createdAt}</Text>
+        <Text>Event Details {eventToDisplay.details}</Text>
         <Text>etc...</Text>
       </View>
       <View>

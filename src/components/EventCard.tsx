@@ -11,8 +11,8 @@ interface Event {
 }
 
 const EventCard: FC<Event> = (props) => {
-  const { data } = sampleData;
-
+  // const { data } = sampleData;
+console.log(props)
   return (
     <View>
       <Text>Event card</Text>
