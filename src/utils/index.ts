@@ -1,3 +1,4 @@
 import sampleData from "./sample-data";
+import { sampleEvents, sampleComments } from "./sample-events";
 
-export { sampleData };
+export { sampleData, sampleEvents, sampleComments };
