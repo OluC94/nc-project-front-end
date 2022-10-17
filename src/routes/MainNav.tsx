@@ -6,7 +6,7 @@ import AuthStack from "./AuthStack";
 
 
 export const MainNav: FC = () => {
-  const [user, setUser] = useState<any>("user");
+  const [user, setUser] = useState<any>(null);
 
   return (
     <NavigationContainer>

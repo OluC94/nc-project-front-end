@@ -10,6 +10,7 @@ import axios from "axios";
 
 
 const EventList: FC = ({ navigate }) => {
+
    const { setEvent } = useContext(EventContext);
   const [data, setData] = useState([])
 
@@ -20,9 +21,10 @@ const EventList: FC = ({ navigate }) => {
     })
   }, []);
   
+  const { setEventID } = useContext(EventContext);
 
   const handleEventSelection = (event_id: string) => {
-    setEvent(event_id);
+    setEventID(event_id);
     navigate("Event");
   };
 

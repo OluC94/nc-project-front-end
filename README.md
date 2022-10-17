@@ -56,3 +56,11 @@
 - Appstack houses HomeScreen + Event screens
 - all screens and components are exported into the index for their relative folder
 - importing screens/components -> `import {ScreenName} from "../screens"`
+
+### node modules error
+
+- make user node_modules/expo/AppEntry.js contains `import App from '../../src/App';`
+
+### Camera Roll Access
+
+- run `npx expo install expo-image-picker`
