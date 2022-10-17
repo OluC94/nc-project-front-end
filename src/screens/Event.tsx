@@ -1,7 +1,13 @@
 import React, { FC, useContext, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { EventContext } from "../contexts";
-import { Button, CamAccess, EventCard, Input } from "../components";
+import {
+  Button,
+  CamAccess,
+  CommentList,
+  EventCard,
+  Input,
+} from "../components";
 import { sampleData } from "../utils";
 
 const Event: FC = (props) => {
@@ -46,6 +52,7 @@ const Event: FC = (props) => {
           onChangeText={(text) => setNewComm(text)}
         />
         <Button title="Add comment" onPress={handleAddComm} />
+        <CommentList />
       </View>
     </View>
   );
