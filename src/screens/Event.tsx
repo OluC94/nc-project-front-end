@@ -20,11 +20,9 @@ const Event: FC = (props) => {
 
   useEffect(() => {
     event_list().then(x => {
-      console.log('event_list', x);
       let event = x.data.events.filter(
         (dataPoint: any) => dataPoint._id === eventID
       )[0];
-      console.log('event', event)
       setEventToDisplay(event)
     })
   }, []);
@@ -40,7 +38,7 @@ const Event: FC = (props) => {
       <View>
         <Text>Event Title: {eventToDisplay.event_name}</Text>
         <Text>Date: {eventToDisplay.createdAt}</Text>
-        <Text>Event Details {eventToDisplay.details}</Text>
+        <Text>Event Details: {eventToDisplay.details}</Text>
         <Text>etc...</Text>
       </View>
       <View>

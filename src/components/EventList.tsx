@@ -24,7 +24,7 @@ const EventList: FC = ({ navigate }) => {
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
-    navigate("Event");
+    navigate("View Event");
   };
   return (
     <View>
