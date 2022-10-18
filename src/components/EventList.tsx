@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState} from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import EventCard from "./EventCard";
 import { EventContext } from "../contexts";
@@ -6,40 +6,32 @@ import { event_list } from "../utils/events_api";
 import spaceApi from "../utils/api";
 import axios from "axios";
 
-
-
-
 const EventList: FC = ({ navigate }) => {
-
-  //  const { setEvent } = useContext(EventContext);
-  const [data, setData] = useState([])
+  const { setEventID } = useContext(EventContext);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    event_list().then(x => {
-      console.log('event_list', x);
-      setData(x.data.events)
-    })
+    event_list().then((x) => {
+      setData(x.data.events);
+    });
   }, []);
-  
-  const { setEventID } = useContext(EventContext);
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
     navigate("Event");
   };
-  console.log(data)
   return (
     <View>
-      <Text>Event Cards:</Text>
+      <Text>Events:</Text>
       <View>
-        {data.map((dataPoint, i) => {
+        {data.map((dataPoint) => {
           return (
             <View key={dataPoint._id}>
               <EventCard
                 title={dataPoint.event_name}
                 date={dataPoint.time}
                 details={dataPoint.details}
-                followers={4}
+                followers={dataPoint.interested_in.length}
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}

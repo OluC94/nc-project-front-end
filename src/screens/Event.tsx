@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Text, View, StyleSheet, TextInput } from "react-native";
+import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
 import { EventContext } from "../contexts";
 import {
   Button,
@@ -8,31 +8,32 @@ import {
   EventCard,
   Input,
 } from "../components";
-import { sampleData } from "../utils";
 import { UserContext } from "../contexts/UserContext";
-import { event_list } from "../utils/events_api";
+import { addInterest, event_list } from "../utils/events_api";
 
 const Event: FC = (props) => {
   const [newComm, setNewComm] = useState<string | null>(null);
   const { eventID } = useContext(EventContext);
   const { username } = useContext(UserContext);
-  const [eventToDisplay, setEventToDisplay] = useState([])
+  const [eventToDisplay, setEventToDisplay] = useState([]);
 
   useEffect(() => {
-    event_list().then(x => {
-      console.log('event_list', x);
+    event_list().then((x) => {
       let event = x.data.events.filter(
         (dataPoint: any) => dataPoint._id === eventID
       )[0];
-      console.log('event', event)
-      setEventToDisplay(event)
-    })
+      setEventToDisplay(event);
+    });
   }, []);
 
-
   const handleAddInterest = async () => {
-    // implement method that adds event to user's interests
-    alert("This event has been added to your list of interests");
+    addInterest(eventID, username)
+      .then(() => {
+        Alert.alert("This event has been added to your list of interests");
+      })
+      .catch((err) => {
+        Alert.alert("Something went wrong, please try again");
+      });
   };
 
   return (
@@ -41,10 +42,9 @@ const Event: FC = (props) => {
         <Text>Event Title: {eventToDisplay.title}</Text>
         <Text>Date: {eventToDisplay.createdAt}</Text>
         <Text>Event Details {eventToDisplay.details}</Text>
-        <Text>etc...</Text>
       </View>
       <View>
-        <Button title="Notify Me" onPress={handleAddInterest} />
+        <Button title="I'm interested!" onPress={handleAddInterest} />
       </View>
       <CamAccess />
       <View>
