@@ -9,8 +9,11 @@ export const MainNav: FC = () => {
   const [user, setUser] = useState<any>(null);
 
   return (
-    <NavigationContainer>
-      {user === null ? <AuthStack /> : <AppStack />}
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        {user === null ? <AuthStack /> : <AppStack />}
+      </NavigationContainer>
+      {/* {user === null ? <BottomBar /> : <></>} */}
+    </>
   );
 };
