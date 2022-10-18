@@ -5,17 +5,22 @@ import { addComment, fetchEventComments } from "../utils/comments-api";
 import Button from "./Button";
 import Input from "./Input";
 import { UserContext } from "../contexts/UserContext";
+import { unixToDate } from "../utils/date";
+import { Loading } from "./Loading";
 
 const CommentList: FC = () => {
   const [comments, setComments] = useState<any>([]);
   const [newComm, setNewComm] = useState<string | null>(null);
   const { username } = useContext(UserContext);
   const { eventID } = useContext(EventContext);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchEventComments(eventID)
       .then((result) => {
         setComments(result.comments);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -56,6 +61,8 @@ const CommentList: FC = () => {
     }
   };
 
+  if (isLoading) return <Loading />;
+
   return (
     <View>
       <Input
@@ -73,7 +80,7 @@ const CommentList: FC = () => {
               <View key={comment._id}>
                 <Text>User: {[comment.username, "\n"]}</Text>
                 <Text>{[comment.body, "\n"]}</Text>
-                <Text>{["Posted on: ", comment.createdAt]}</Text>
+                <Text>{["Posted: ", unixToDate(comment.time)]}</Text>
               </View>
             );
           })}
