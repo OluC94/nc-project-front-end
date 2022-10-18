@@ -38,7 +38,7 @@ const Event: FC = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Event Title: {eventToDisplay.title}</Text>
+        <Text>Event Title: {eventToDisplay.event_name}</Text>
         <Text>Date: {eventToDisplay.createdAt}</Text>
         <Text>Event Details {eventToDisplay.details}</Text>
         <Text>etc...</Text>
