@@ -1,14 +1,8 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import { Login, SignUp, Event, HomeScreen, AddEvent } from "../screens";
+import {Event, HomeScreen, AddEvent, Login, SignUp } from "../screens";
 
 const screens = {
-  Login: {
-    screen: Login,
-  },
-  SignUp: {
-    screen: SignUp,
-  },
   HomeScreen: {
     screen: HomeScreen,
   },
@@ -17,7 +11,8 @@ const screens = {
   },
   AddEvent: {
     screen: AddEvent,
-  }
+  },
+ 
 };
 
 const AppStack = createStackNavigator(screens);

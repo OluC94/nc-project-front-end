@@ -29,10 +29,6 @@ const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-
-      <View>
-        <AddEvent navigate={navigate}/>
-      </View>
       <Text>Hello!</Text>
       <View>
         <EventList navigate={navigate} />
