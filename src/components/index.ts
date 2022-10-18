@@ -4,5 +4,6 @@ import Header from "./Header";
 import EventList from "./EventList";
 import EventCard from "./EventCard";
 import CamAccess from "./CamAccess";
+import CommentList from "./CommentList";
 
-export { Input, Button, Header, EventList, EventCard, CamAccess };
+export { Input, Button, Header, EventList, EventCard, CamAccess, CommentList };

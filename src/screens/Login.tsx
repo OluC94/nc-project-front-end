@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -9,11 +9,13 @@ import {
   AsyncStorage,
 } from "react-native";
 import { Button, Input } from "../components";
+import { UserContext } from "../contexts/UserContext";
 import { get_users, user_login } from "../utils/user_api";
 
 const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+  const { setUsername } = useContext(UserContext);
 
 
   interface Props {
@@ -26,13 +28,16 @@ const Login: FC = (props) => {
         email: email,
         password: password,
       }).then(async (result) => {
-        if(result.status === 200) {
-         await AsyncStorage.setItem('key', result.data.token)
-         get_users().then(async (result2) => {
-          props.navigation.navigate("HomeScreen", {name: result2.data.user.name})
-         })
+        if (result.status === 200) {
+          await AsyncStorage.setItem("key", result.data.token);
+          get_users().then(async (result2) => {
+            props.navigation.navigate("HomeScreen", {
+              name: result2.data.user.name,
+            });
+            setUsername(result2.data.user.name);
+          });
         }
-      })
+      });
     } else {
       Alert.alert("Error, missing fields");
     }
@@ -40,8 +45,7 @@ const Login: FC = (props) => {
 
   const getUsers = async () => {
     if (email && password) {
-      get_users().then(async (result) => {
-      })
+      get_users().then(async (result) => {});
     } else {
       Alert.alert("Error, missing fields");
     }
@@ -49,7 +53,7 @@ const Login: FC = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Log In screen, </Text>
+      <Text>Log In screen</Text>
       <Input placeholder="Email" onChangeText={(text) => setEmail(text)} />
       <Input
         placeholder="Password"

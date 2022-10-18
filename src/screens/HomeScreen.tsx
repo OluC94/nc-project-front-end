@@ -1,5 +1,12 @@
 import React, { FC, useContext } from "react";
-import { SafeAreaView, Text, StyleSheet, View, AsyncStorage, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  AsyncStorage,
+  ScrollView,
+} from "react-native";
 import { Button, EventList } from "../components";
 import { useState } from "react";
 import { EventContext } from "../contexts";
@@ -11,17 +18,18 @@ const HomeScreen: FC = (props) => {
   const { navigate } = navigation;
 
   const handleSignOut = async () => {
-    let token = await AsyncStorage.getItem('key');
-    if(token) {
-      await AsyncStorage.removeItem('key')
-      props.navigation.navigate("Login")
+    let token = await AsyncStorage.getItem("key");
+    if (token) {
+      await AsyncStorage.removeItem("key");
+      props.navigation.navigate("Login");
     }
-  }
+  };
 
- // {props.navigation.state.params.name}
+  // console.log(props.navigation.state.params.name);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+
       <View>
         <AddEvent navigate={navigate}/>
       </View>
