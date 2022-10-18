@@ -3,6 +3,7 @@ import { SafeAreaView, Text, StyleSheet, View, AsyncStorage, ScrollView } from "
 import { Button, EventList } from "../components";
 import { useState } from "react";
 import { EventContext } from "../contexts";
+import AddEvent from "./AddEvent";
 
 const HomeScreen: FC = (props) => {
   const { eventID } = useContext(EventContext);
@@ -21,6 +22,9 @@ const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+      <View>
+        <AddEvent navigate={navigate}/>
+      </View>
       <Text>Hello!</Text>
       <View>
         <EventList navigate={navigate} />

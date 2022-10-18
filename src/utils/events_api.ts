@@ -19,7 +19,7 @@ export const event_list = async () => {
 
 export const event_post = async data => {
     try {
-        const result = await spaceApi('/event/add_event', {
+        const result = await spaceApi('/events', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

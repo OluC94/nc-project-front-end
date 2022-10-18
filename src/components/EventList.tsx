@@ -11,12 +11,10 @@ import axios from "axios";
 
 const EventList: FC = ({ navigate }) => {
 
-  //  const { setEvent } = useContext(EventContext);
   const [data, setData] = useState([])
 
   useEffect(() => {
     event_list().then(x => {
-      console.log('event_list', x);
       setData(x.data.events)
     })
   }, []);
@@ -27,7 +25,6 @@ const EventList: FC = ({ navigate }) => {
     setEventID(event_id);
     navigate("Event");
   };
-  console.log(data)
   return (
     <View>
       <Text>Event Cards:</Text>
