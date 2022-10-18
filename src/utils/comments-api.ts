@@ -10,7 +10,7 @@ const fetchEventComments = (event_id: string) => {
       return eventComms;
     })
     .catch((err) => {
-      return err;
+      return err.response.data;
     });
 };
 
@@ -21,8 +21,14 @@ const addComment = (event_id: string, data: object) => {
       return data;
     })
     .catch((err) => {
-      return err;
+      return err.response.data;
     });
 };
 
-export { fetchEventComments, addComment };
+const deleteComment = (event_id: string, comment_id: string) => {
+  return spaceApi.delete(`/events/${event_id}/${comment_id}`).catch((err) => {
+    return err.response.data;
+  });
+};
+
+export { fetchEventComments, addComment, deleteComment };
