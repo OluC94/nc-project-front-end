@@ -11,6 +11,7 @@ import { MainNav } from "./routes/MainNav";
 import { EventContext } from "./contexts";
 import axios from "axios";
 import { UserContext } from "./contexts/UserContext";
+import 'react-native-gesture-handler';
 
 export default function App() {
   console.log("running");

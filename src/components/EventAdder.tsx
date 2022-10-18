@@ -1,7 +1,8 @@
 import React, {
 FC,
 useEffect,
-useState
+useState,
+useContext
 } from "react";
 import {
 Text,
@@ -16,63 +17,66 @@ import {
 Button,
 Input
 } from "../components";
-import spaceApi from "../utils/api";
 import {
 event_post
 } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker"
+import { user_login } from "../utils/user_api";
+import { UserContext } from "../contexts/UserContext";
 
 const EventAdder: FC = (props) => {
 const [eventName, setEventName] = useState < string | null> (null);
   const [eventDetails, setEventDetails] = useState < string | null> (null);
     const [eventDate, setEventDate] = useState < string | null> (null);
-      const [image, setImage] = useState < any> (null);
+      const [image, setImage] = useState < any> ("");
+      const { username } = useContext(UserContext);
 
         const handleSubmit = async () => {
-        if (eventName && eventDetails && eventDate) {
-        event_post({
-        eventName: eventName,
-        eventDetails: eventDetails,
-        eventDate: eventDate,
-        image: image,
-        }).then(async (result) => {
-        if (result.stats === 200) {
-        return console.log('post successful!')
-        }
-        })
-        } else {
-        Alert.alert("Error, missing fields");
-        };
+          if (eventName && eventDetails && eventDate) {
+            event_post({
+              username: username,
+              event_name: eventName,
+              details: eventDetails,
+              time: eventDate,
+              image: image,
+          }).then(async (result) => {
+            if (result.stats === 200) {
+              props.navigation.navigate("HomeScreen")
+            }
+          })
+          } else {
+            Alert.alert("Error, missing fields");
+          };
         };
 
 
 
         const getImagesFromGallery = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-        });
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
 
-        if (!result.cancelled) {
-        setImage(result.uri);
-        }
+          if (!result.cancelled) {
+            setImage(result.uri);
+          }
         };
 
         return (
         <SafeAreaView style={ styles.container }>
-          <Text> Add event screen, </Text> < Input placeholder="Event Name Here.." onChangeText={ (text)=>
-              setEventName(text)
-              }
-              /> < Input placeholder="Details Here.." onChangeText={ (text)=> setEventDetails(text)
-                }
-                /> < Input placeholder="Date Of Event Here.." onChangeText={ (text)=> setEventDate(text)
-                  }
-                  /> < TouchableOpacity style={ { marginHorizontal: 5 } } onPress={ getImagesFromGallery }>
-                    < Text style={ { color: "rgba(81,135,200,1)" } }> upload Images
-                      </Text> </TouchableOpacity> < Button title="Submit" onPress={ handleSubmit }/>
-                      </SafeAreaView> ); } 
+          <Text> Add Event</Text> 
+          <Input placeholder="Event Name Here.." onChangeText={(text)=>setEventName(text)}/>
+           <Input placeholder="Details Here.." onChangeText={(text)=> setEventDetails(text)}/>
+            <Input placeholder="Date Of Event Here.." onChangeText={ (text)=> setEventDate(text)}/> 
+                <TouchableOpacity style={{ marginHorizontal: 5 }} onPress={ getImagesFromGallery }>
+                    <Text style={ { color: "rgba(81,135,200,1)" } }>upload Images</Text> 
+                    </TouchableOpacity>
+                    <Button title="Submit" onPress={ handleSubmit }/>
+                      </SafeAreaView> 
+                      ); 
+                } 
                       
   export default EventAdder; 
                       

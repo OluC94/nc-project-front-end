@@ -45,9 +45,10 @@ const Event: FC = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Event Title: {eventToDisplay.title}</Text>
+        <Text>Event Title: {eventToDisplay.event_name}</Text>
         <Text>Date: {unixToDate(eventToDisplay.time)}</Text>
-        <Text>Event Details {eventToDisplay.details}</Text>
+        <Text>Event Details: {eventToDisplay.details}</Text>
+
       </View>
       <View>
         <Button title="I'm interested!" onPress={handleAddInterest} />

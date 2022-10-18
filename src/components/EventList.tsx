@@ -5,8 +5,10 @@ import { EventContext } from "../contexts";
 import { event_list } from "../utils/events_api";
 import spaceApi from "../utils/api";
 import axios from "axios";
+import { unixToDate } from "../utils/date";
 
 const EventList: FC = ({ navigate }) => {
+
   const { setEventID } = useContext(EventContext);
   const [data, setData] = useState([]);
 
@@ -14,11 +16,12 @@ const EventList: FC = ({ navigate }) => {
     event_list().then((x) => {
       setData(x.data.events);
     });
+
   }, []);
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
-    navigate("Event");
+    navigate("View Event");
   };
   return (
     <View>
@@ -29,7 +32,7 @@ const EventList: FC = ({ navigate }) => {
             <View key={dataPoint._id}>
               <EventCard
                 title={dataPoint.event_name}
-                date={dataPoint.time}
+                date={unixToDate(dataPoint.time)}
                 details={dataPoint.details}
                 followers={dataPoint.interested_in.length}
               />
