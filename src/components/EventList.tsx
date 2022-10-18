@@ -5,6 +5,7 @@ import { EventContext } from "../contexts";
 import { event_list } from "../utils/events_api";
 import spaceApi from "../utils/api";
 import axios from "axios";
+import { unixToDate } from "../utils/date";
 
 
 
@@ -34,7 +35,7 @@ const EventList: FC = ({ navigate }) => {
             <View key={dataPoint._id}>
               <EventCard
                 title={dataPoint.event_name}
-                date={dataPoint.time}
+                date={unixToDate(dataPoint.time)}
                 details={dataPoint.details}
                 followers={4}
               />

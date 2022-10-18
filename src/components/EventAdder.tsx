@@ -1,7 +1,8 @@
 import React, {
 FC,
 useEffect,
-useState
+useState,
+useContext
 } from "react";
 import {
 Text,
@@ -21,17 +22,19 @@ event_post
 } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker"
 import { user_login } from "../utils/user_api";
+import { UserContext } from "../contexts/UserContext";
 
 const EventAdder: FC = (props) => {
 const [eventName, setEventName] = useState < string | null> (null);
   const [eventDetails, setEventDetails] = useState < string | null> (null);
     const [eventDate, setEventDate] = useState < string | null> (null);
-      const [image, setImage] = useState < any> (null);
+      const [image, setImage] = useState < any> ("");
+      const { username } = useContext(UserContext);
 
         const handleSubmit = async () => {
           if (eventName && eventDetails && eventDate) {
             event_post({
-              username: user,
+              username: username,
               event_name: eventName,
               details: eventDetails,
               time: eventDate,
