@@ -7,14 +7,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 //screens
 import HomeScreen from './HomeScreen';
-import EventAdder from '../components/EventAdder';
 import Event from './Event';
 import AddEvent from './AddEvent';
 import Login from './Login';
+import PlanetScreen from './PlanetScreen';
 
 const homeName = 'Home';
 const eventAdder = 'Add Event';
 const event = 'View Event';
+const planets = 'View Planets'
 const signOut = 'Sign Out';
 
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,8 @@ export default function BottomBar(){
                         iconName = focused ? 'list' : 'list-outline'
                     } else if(rn === event) {
                         iconName = focused ? 'document-text' : 'document-text-outline'
+                    } else if(rn === planets) {
+                        iconName = focused ? 'planet' : 'planet-outline'
                     } else if(rn === signOut) {
                         iconName = focused ? 'log-out' : 'log-out-outline'
                     }
@@ -48,6 +51,7 @@ export default function BottomBar(){
             <Tab.Screen name={homeName} component={HomeScreen}/>
             <Tab.Screen name={eventAdder} component={AddEvent}/>
             <Tab.Screen name={event} component={Event}/>
+            <Tab.Screen name={planets} component={PlanetScreen}/>
             <Tab.Screen name={signOut} component={Login}/>
 
 
