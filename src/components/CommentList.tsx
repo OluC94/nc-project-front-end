@@ -101,8 +101,7 @@ const CommentList: FC = () => {
                 <Text>{["Posted: ", unixToDate(comment.time)]}</Text>
                 {username === comment.username ? (
                   <TouchableOpacity
-                    onPress={() => handleDeleteComm(eventID, comment._id)}
-                  >
+                    onPress={() => handleDeleteComm(eventID, comment._id)}>
                     <Text style={{ color: "rgba(81,135,200,1)" }}>
                       Delete comment
                     </Text>

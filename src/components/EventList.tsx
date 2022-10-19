@@ -8,31 +8,29 @@ import axios from "axios";
 import { unixToDate } from "../utils/date";
 import { Loading } from "./Loading";
 
-import {useFocusEffect} from '@react-navigation/native';
-
+import { useFocusEffect } from "@react-navigation/native";
 
 const EventList: FC = ({ navigate }) => {
-
   const { setEventID } = useContext(EventContext);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useFocusEffect(
     React.useCallback(() => {
-        setIsLoading(true)
-        event_list().then((x) => {
-          setData(x);
-          setIsLoading(false)
-        });
+      setIsLoading(true);
+      event_list().then((x) => {
+        setData(x);
+        setIsLoading(false);
+      });
     }, [])
-  )
+  );
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
     navigate("View Event");
   };
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading />;
   return (
     <View>
       <Text>Events:</Text>
@@ -49,8 +47,7 @@ const EventList: FC = ({ navigate }) => {
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
-                onPress={() => handleEventSelection(dataPoint._id)}
-              >
+                onPress={() => handleEventSelection(dataPoint._id)}>
                 <Text style={{ color: "rgba(81,135,200,1)" }}>More Info</Text>
               </TouchableOpacity>
             </View>

@@ -1,9 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, ReactElement, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-const CamAccess: FC = () => {
-  const [image, setImage] = useState<any>(null);
+const CamAccess: FC = (): ReactElement => {
+  const [, setImage] = useState<any>(null);
 
   const getImagesFromGallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -22,8 +22,7 @@ const CamAccess: FC = () => {
     <View>
       <TouchableOpacity
         style={{ marginHorizontal: 5 }}
-        onPress={getImagesFromGallery}
-      >
+        onPress={getImagesFromGallery}>
         <Text style={{ color: "rgba(81,135,200,1)" }}>Add your images</Text>
       </TouchableOpacity>
     </View>
