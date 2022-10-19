@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { dataLoading } from "./useGetPlanets";
 import axios from "axios";
-const API_KEY = "coCbNcv0MDg4/Ryh2qCQVQ==rKtVP565DnPJwebF";
 
-export interface dataLoading {
-  data: any;
-  loading: boolean;
-  error: Error | void;
-}
-
-export const useGetPlanets = (): dataLoading => {
+const usePOTDUrl = (): dataLoading => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
@@ -17,17 +11,19 @@ export const useGetPlanets = (): dataLoading => {
     const getData = async (apiUrl: string) => {
       setLoading(true);
       try {
-        const response = await axios.get(apiUrl, {
-          headers: { "X-Api-Key": API_KEY },
-        });
-        setData(response.data);
+        const response = await axios.get(apiUrl);
+        setData(response.data.url);
       } catch (error: any | void) {
         setError(error);
       } finally {
         setLoading(false);
       }
     };
-    getData("https://api.api-ninjas.com/v1/planets?max_distance_light_year=1");
+    getData(
+      "https://api.nasa.gov/planetary/apod?api_key=O9rCEo3SRKCMw76GVeuQhohdVj07YuYawGJDUfhF"
+    );
   }, []);
   return { data, loading, error };
 };
+
+export default usePOTDUrl;
