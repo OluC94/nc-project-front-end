@@ -8,5 +8,5 @@ export const unixToDate = (unixTime: number): String => {
 
 export const dateToUnix = (date: string): number => {
   const parsed = new Date(date);
-  return parsed.getTime() / 1000;
+  return parsed.getTime();
 };
