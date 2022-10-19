@@ -6,23 +6,33 @@ import { event_list } from "../utils/events_api";
 import spaceApi from "../utils/api";
 import axios from "axios";
 import { unixToDate } from "../utils/date";
+import { Loading } from "./Loading";
+
+import {useFocusEffect} from '@react-navigation/native';
+
 
 const EventList: FC = ({ navigate }) => {
 
   const { setEventID } = useContext(EventContext);
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    event_list().then((x) => {
-      setData(x);
-    });
-
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+        setIsLoading(true)
+        event_list().then((x) => {
+          setData(x);
+          setIsLoading(false)
+        });
+    }, [])
+  )
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
     navigate("View Event");
   };
+
+  if (isLoading) return <Loading />
   return (
     <View>
       <Text>Events:</Text>
