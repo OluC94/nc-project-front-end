@@ -8,7 +8,6 @@ import axios from "axios";
 import { unixToDate } from "../utils/date";
 
 const EventList: FC = ({ navigate }) => {
-
   const { setEventID } = useContext(EventContext);
   const [data, setData] = useState([]);
 
@@ -16,7 +15,6 @@ const EventList: FC = ({ navigate }) => {
     event_list().then((x) => {
       setData(x);
     });
-
   }, []);
 
   const handleEventSelection = (event_id: string) => {
@@ -39,8 +37,7 @@ const EventList: FC = ({ navigate }) => {
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
-                onPress={() => handleEventSelection(dataPoint._id)}
-              >
+                onPress={() => handleEventSelection(dataPoint._id)}>
                 <Text style={{ color: "rgba(81,135,200,1)" }}>More Info</Text>
               </TouchableOpacity>
             </View>

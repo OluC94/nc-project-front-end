@@ -1,14 +1,5 @@
-import React, { FC } from "react";
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import { TextInput } from "react-native-gesture-handler";
-
-const { height, width } = Dimensions.get("screen");
+import React, { FC, ReactElement } from "react";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 interface Props {
   title: string;
@@ -17,7 +8,7 @@ interface Props {
   style?: any;
 }
 
-const Button: FC<Props> = (props) => {
+const Button: FC<Props> = (props): ReactElement => {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Text style={styles.text}>{props.title}</Text>

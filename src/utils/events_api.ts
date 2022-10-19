@@ -14,7 +14,6 @@ export const event_list = async () => {
 
     let withImages = await getEventsImages(result.data.events);
 
-    console.log('withImages', withImages)
 
     return withImages;
   } catch (error: any) {
@@ -28,14 +27,12 @@ const getEventsImages = (events) => {
     let images = await spaceApi(`/events/${event._id}/image`, {
       method: "GET",
       headers: {
-          'content-type': 'application/json',
+        'content-type': 'application/json',
       }
     });
 
     event.images = images.data.image;
 
-    console.log('event.images', event.images);
-    
     return event;
   });
 
@@ -43,18 +40,18 @@ const getEventsImages = (events) => {
 }
 
 export const event_post = async data => {
-    try {
-        const result = await spaceApi('/events', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json',
-            },
-            data: data
-        });
-        return result;
-    } catch (error: any) {
-        return error.response.data
-    }
+  try {
+    const result = await spaceApi('/events', {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json',
+      },
+      data: data
+    });
+    return result;
+  } catch (error: any) {
+    return error.response.data
+  }
 
 };
 
