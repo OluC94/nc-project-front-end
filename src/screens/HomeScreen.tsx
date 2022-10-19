@@ -25,7 +25,6 @@ const HomeScreen: FC = (props) => {
     }
   };
 
-  // console.log(props.navigation.state.params.name);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
