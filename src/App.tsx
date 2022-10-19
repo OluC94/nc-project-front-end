@@ -34,12 +34,12 @@ export default function App() {
   );
 
   return (
-    <NavigationContainer>
+    
       <EventContext.Provider value={{ eventID, setEventID }}>
         <UserContext.Provider value={{ username, setUsername }}>
           <MainNav />
         </UserContext.Provider>
       </EventContext.Provider>
-    </NavigationContainer>
+    
   );
 }
