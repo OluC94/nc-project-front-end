@@ -1,6 +1,7 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { Login, SignUp, Event, HomeScreen, AddEvent } from "../screens";
+import { StackActionHelpers } from "@react-navigation/native";
 
 const screens = {
   Login: {
@@ -17,7 +18,7 @@ const screens = {
   },
   AddEvent: {
     screen: AddEvent,
-  }
+  },
 };
 
 const AppStack = createStackNavigator(screens);

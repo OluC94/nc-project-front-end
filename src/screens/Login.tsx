@@ -1,5 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import {
+  Image,
   Text,
   View,
   StyleSheet,
@@ -17,9 +18,8 @@ const Login: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
 
-
   interface Props {
-    navigation: any
+    navigation: any;
   }
 
   const handleLogin = async () => {
@@ -53,22 +53,33 @@ const Login: FC = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Log In screen</Text>
+      <Image
+        style={styles.planet}
+        source={require("../../assets/planeticon.png")}
+      />
+      <Text style={styles.login}>Log In</Text>
       <Input placeholder="Email" onChangeText={(text) => setEmail(text)} />
       <Input
         placeholder="Password"
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Log in" onPress={handleLogin} />
+      {/* <Button title="Log In" color="#2e0f38" onPress={handleLogin} /> */}
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={handleLogin}
+        underlayColor="#fff"
+      >
+        <Text style={styles.loginButtonText}>Log In</Text>
+      </TouchableOpacity>
 
       <View style={styles.loginText}>
-        <Text style={{ marginHorizontal: 5 }}>Don't have an account?</Text>
+        <Text style={styles.dontHave}>Don't have an account?</Text>
         <TouchableOpacity
           style={{ marginHorizontal: 5 }}
           onPress={() => props.navigation.navigate("SignUp")}
         >
-          <Text style={{ color: "rgba(81,135,200,1)" }}>Sign Up Here</Text>
+          <Text style={{ color: "#2E0F38" }}>Sign Up Here</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -80,12 +91,42 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#8351a8",
     alignItems: "center",
     justifyContent: "center",
+  },
+  planet: {
+    width: 150,
+    height: 150,
+    margin: 75,
+  },
+  login: {
+    color: "#fff",
   },
   loginText: {
     flexDirection: "row",
     marginVertical: 20,
+  },
+  loginButton: {
+    marginRight: 60,
+    marginLeft: 60,
+    marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: "#2e0f38",
+    borderRadius: 10,
+  },
+  loginButtonText: {
+    color: "#fff",
+    textAlign: "center",
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  dontHave: {
+    color: "#fff",
+    marginLeft: 5,
+    marginRight: 5,
   },
 });

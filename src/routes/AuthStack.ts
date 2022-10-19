@@ -17,8 +17,7 @@ const screens = {
   },
   AddEvent: {
     screen: AddEvent,
-  }
-
+  },
 };
 
 const AuthStack = createStackNavigator(screens);
