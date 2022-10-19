@@ -6,6 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import { addInterest, event_list } from "../utils/events_api";
 import { unixToDate } from "../utils/date";
 import { Loading } from "../components/Loading";
+import MoonLanding from "../components/MoonLanding";
 
 const Event: FC = (props) => {
   const { eventID } = useContext(EventContext);
@@ -64,7 +65,7 @@ const Event: FC = (props) => {
       </View>
     );
   }
-  return <Text>No Event Loaded</Text>;
+  return <MoonLanding />;
 };
 
 export default Event;
