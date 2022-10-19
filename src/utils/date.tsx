@@ -1,5 +1,3 @@
-import { getActionFromState } from "@react-navigation/native";
-
 export const unixToDate = (unixTime: number): String => {
   const parsed = new Date(unixTime);
   const time = `${parsed.getHours()}:${parsed.getMinutes()}`;
@@ -13,4 +11,4 @@ export const dateToUnix = (date: string): number => {
   return parsed.getTime() / 1000;
 };
 
-console.log(dateToUnix("11/11/2001"));
+console.log(dateToUnix("13:15 11/11/2001"));
