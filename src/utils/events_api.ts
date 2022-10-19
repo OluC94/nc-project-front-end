@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import spaceApi from "./api";
 
 export const event_list = async () => {
@@ -14,7 +14,7 @@ export const event_list = async () => {
 
     let withImages = await getEventsImages(result.data.events);
 
-    console.log('withImages', withImages)
+    console.log("withImages", withImages);
 
     return withImages;
   } catch (error: any) {
@@ -22,40 +22,38 @@ export const event_list = async () => {
   }
 };
 
-
 const getEventsImages = (events) => {
   const promises = events.map(async (event) => {
     let images = await spaceApi(`/events/${event._id}/image`, {
       method: "GET",
       headers: {
-          'content-type': 'application/json',
-      }
+        "content-type": "application/json",
+      },
     });
 
     event.images = images.data.image;
 
-    console.log('event.images', event.images);
-    
+    console.log("event.images", event.images);
+
     return event;
   });
 
   return Promise.all(promises);
-}
+};
 
-export const event_post = async data => {
-    try {
-        const result = await spaceApi('/events', {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json',
-            },
-            data: data
-        });
-        return result;
-    } catch (error: any) {
-        return error.response.data
-    }
-
+export const event_post = async (data) => {
+  try {
+    const result = await spaceApi("/events", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      data: data,
+    });
+    return result;
+  } catch (error: any) {
+    return error.response.data;
+  }
 };
 
 export const addInterest = async (event_id: string, username: string) => {

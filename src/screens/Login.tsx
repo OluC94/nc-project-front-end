@@ -7,8 +7,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { get_users, user_login } from "../utils/user_api";
@@ -20,27 +20,21 @@ const Login: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
 
-
   ////////TESTING/////////////
-  if(IS_TESTING){
+  if (IS_TESTING) {
     useEffect(() => {
-      setEmail('mark@gmail.com');
-      setPassword('password');
-    }, [])
-  }    
+      setEmail("mark@gmail.com");
+      setPassword("password");
+    }, []);
+  }
   ///////////////////////////
-
-
 
   interface Props {
     navigation: any;
   }
 
   const handleLogin = async () => {
-
-
-
-    console.log(email)
+    console.log(email);
     if (email && password) {
       user_login({
         email: email,

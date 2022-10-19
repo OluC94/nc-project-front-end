@@ -1,13 +1,8 @@
 import React, { FC, useContext } from "react";
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  View,
-  AsyncStorage,
-  ScrollView,
-} from "react-native";
-import { Button, EventList } from "../components";
+import { SafeAreaView, Text, StyleSheet, View, ScrollView } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { Button, EventList, PicOfTheDay } from "../components";
 import { useState } from "react";
 import { EventContext } from "../contexts";
 import AddEvent from "./AddEvent";
@@ -28,12 +23,15 @@ const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <Text>Hello!</Text>
-      <View>
-        <EventList navigate={navigate} />
-      </View>
-      <Button title="Sign Out" onPress={handleSignOut}
-      />
+        <Text>Hello!</Text>
+        <View>
+          <Text>NASA's Picture of the day:</Text>
+          <PicOfTheDay />
+        </View>
+        <View>
+          <EventList navigate={navigate} />
+        </View>
+        <Button title="Sign Out" onPress={handleSignOut} />
       </ScrollView>
     </SafeAreaView>
   );
