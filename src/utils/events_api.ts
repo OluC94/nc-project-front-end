@@ -37,21 +37,6 @@ const getEventsImages = (events) => {
   return Promise.all(promises);
 }
 
-export const event_post = async data => {
-  try {
-    const result = await spaceApi('/events', {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json',
-      },
-      data: data
-    });
-    return result;
-  } catch (error: any) {
-    return error.response.data
-  }
-
-};
 
 export const event_post = async (data) => {
   try {
