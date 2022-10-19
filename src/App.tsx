@@ -7,6 +7,7 @@ import {
   Button,
   AsyncStorage,
 } from "react-native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { MainNav } from "./routes/MainNav";
 import { EventContext } from "./contexts";
 import axios from "axios";
@@ -33,10 +34,12 @@ export default function App() {
   );
 
   return (
-    <EventContext.Provider value={{ eventID, setEventID }}>
-      <UserContext.Provider value={{ username, setUsername }}>
-        <MainNav />
-      </UserContext.Provider>
-    </EventContext.Provider>
+    <NavigationContainer>
+      <EventContext.Provider value={{ eventID, setEventID }}>
+        <UserContext.Provider value={{ username, setUsername }}>
+          <MainNav />
+        </UserContext.Provider>
+      </EventContext.Provider>
+    </NavigationContainer>
   );
 }
