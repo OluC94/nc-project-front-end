@@ -14,7 +14,7 @@ import { event_post } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker";
 import { user_login } from "../utils/user_api";
 import { UserContext } from "../contexts/UserContext";
-import { dateToUnix } from "../utils/date";
+import { dateToUnix, unixToDate } from "../utils/date";
 
 const EventAdder: FC = ({ navigate }) => {
   const [eventName, setEventName] = useState<string | null>(null);
@@ -24,15 +24,17 @@ const EventAdder: FC = ({ navigate }) => {
   const { username } = useContext(UserContext);
 
   const handleSubmit = async () => {
+    const unixDate = dateToUnix(eventDate)
     if (eventName && eventDetails && eventDate) {
       event_post({
         username: username,
         event_name: eventName,
         details: eventDetails,
-        time: dateToUnix(eventDate),
+        time: unixDate,
         image: image,
       })
         .then(async (result) => {
+          console.log(result)
           if (result.status === 201) {
             Alert.alert("Your event has been added!");
             navigate("Home", { screen: "HomeScreen" });
@@ -73,7 +75,7 @@ const EventAdder: FC = ({ navigate }) => {
         onChangeText={(text) => setEventDetails(text)}
       />
       <Input
-        placeholder="Date Of Event Here... MM/DD/YYYY"
+        placeholder="Date And Time of Event.. 00:00 MM/DD/YYYY"
         onChangeText={(text) => setEventDate(text)}
       />
       <TouchableOpacity
