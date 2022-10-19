@@ -30,7 +30,7 @@ const Event: FC = (props) => {
       setEventToDisplay(event);
       setIsLoading(false);
     });
-  }, []);
+  }, [eventID]);
 
   const handleAddInterest = async () => {
     addInterest(eventID, username)

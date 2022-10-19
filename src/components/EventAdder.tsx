@@ -32,10 +32,8 @@ const EventAdder: FC = (props) => {
   const { username } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    // console.log('handleSubmit')
-    // console.log(eventName, eventDetails, eventDate)
     if (eventName && eventDetails && eventDate) {
-      // console.log('testtest')
+    
       event_post({
         username: username,
         event_name: eventName,

@@ -12,7 +12,7 @@ import { Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { get_users, user_login } from "../utils/user_api";
 
-const IS_TESTING = false;
+const IS_TESTING = true;
 
 const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
