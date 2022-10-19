@@ -74,7 +74,7 @@ const EventAdder: FC = ({ navigate }) => {
         onChangeText={(text) => setEventDetails(text)}
       />
       <Input
-        placeholder="Date And Time of Event.. 00:00 MM/DD/YYYY"
+        placeholder="Date And Time of Event.. MM/DD/YYYY 00:00"
         onChangeText={(text) => setEventDate(text)}
       />
       <TouchableOpacity
