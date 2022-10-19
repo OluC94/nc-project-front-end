@@ -1,24 +1,25 @@
-import * as React from 'react';
-import { View, Text } from 'react-native'
+import * as React from "react";
+import { View, Text } from "react-native";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 //screens
-import HomeScreen from './HomeScreen';
-import Event from './Event';
-import AddEvent from './AddEvent';
-import Login from './Login';
-import PlanetScreen from './PlanetScreen';
+import HomeScreen from "./HomeScreen";
+import Event from "./Event";
+import AddEvent from "./AddEvent";
+import Login from "./Login";
+import PlanetScreen from "./PlanetScreen";
 
-const homeName = 'Home';
-const eventAdder = 'Add Event';
-const event = 'View Event';
-const planets = 'View Planets'
-const signOut = 'Sign Out';
+const homeName = "Home";
+const eventAdder = "Add Event";
+const event = "View Event";
+const planets = "View Planets";
+const signOut = "Sign Out";
 
 const Tab = createBottomTabNavigator();
+
 
 export default function BottomBar(){
     return (
@@ -40,8 +41,6 @@ export default function BottomBar(){
                     } else if(rn === signOut) {
                         iconName = focused ? 'log-out' : 'log-out-outline'
                     }
-
-                    console.log('iconName', iconName)
 
                     return <Ionicons name={iconName} size={size} color={color}/>
                 },
