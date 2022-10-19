@@ -20,36 +20,39 @@ const signOut = "Sign Out";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomBar() {
-  return (
-    <Tab.Navigator
-      initialRouteName={homeName}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          let rn = route.name;
 
-          if (rn === homeName) {
-            iconName = focused ? "home" : "home-outline";
-          } else if (rn === eventAdder) {
-            iconName = focused ? "list" : "list-outline";
-          } else if (rn === event) {
-            iconName = focused ? "document-text" : "document-text-outline";
-          } else if (rn === planets) {
-            iconName = focused ? "planet" : "planet-outline";
-          } else if (rn === signOut) {
-            iconName = focused ? "log-out" : "log-out-outline";
-          }
+export default function BottomBar(){
+    return (
+            <Tab.Navigator
+            initialRouteName={homeName}
+            screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
+                    let iconName;
+                    let rn = route.name;
 
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-    >
-      <Tab.Screen name={homeName} component={HomeScreen} />
-      <Tab.Screen name={eventAdder} component={AddEvent} />
-      <Tab.Screen name={event} component={Event} />
-      <Tab.Screen name={planets} component={PlanetScreen} />
-      <Tab.Screen name={signOut} component={Login} />
-    </Tab.Navigator>
-  );
+                    if(rn === homeName) {
+                        iconName = focused ? 'home' : 'home-outline'
+                    } else if(rn === eventAdder) {
+                        iconName = focused ? 'list' : 'list-outline'
+                    } else if(rn === event) {
+                        iconName = focused ? 'document-text' : 'document-text-outline'
+                    } else if(rn === planets) {
+                        iconName = focused ? 'planet' : 'planet-outline'
+                    } else if(rn === signOut) {
+                        iconName = focused ? 'log-out' : 'log-out-outline'
+                    }
+
+                    return <Ionicons name={iconName} size={size} color={color}/>
+                },
+            })}>
+           
+
+            <Tab.Screen name={homeName} component={HomeScreen} />
+            <Tab.Screen name={eventAdder} component={AddEvent}/>
+            <Tab.Screen name={event} component={Event}/>
+            <Tab.Screen name={planets} component={PlanetScreen}/>
+            <Tab.Screen name={signOut} component={Login}/>
+
+            </Tab.Navigator>
+    )
 }

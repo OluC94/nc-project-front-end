@@ -40,6 +40,5 @@ export default function App() {
           <MainNav />
         </UserContext.Provider>
       </EventContext.Provider>
-    
   );
-}
+};

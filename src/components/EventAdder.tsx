@@ -8,6 +8,7 @@ import {
   Alert,
   AsyncStorage,
 } from "react-native";
+
 import { Button, Input } from "../components";
 import { event_post } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker";
@@ -24,12 +25,21 @@ const EventAdder: FC = ({ navigate }) => {
 
   const handleSubmit = async () => {
     if (eventName && eventDetails && eventDate) {
+
       event_post({
         username: username,
         event_name: eventName,
         details: eventDetails,
         time: dateToUnix(eventDate),
         image: image,
+      }).then(async (result) => {
+        console.log(result)
+        if (result.status === 201) {
+          console.log(result.status)
+          props.navigation.navigate("HomeScreen");
+        }
+      }).catch(err => {
+        console.log(err);
       })
         .then(async (result) => {
           console.log("result --->", result);
@@ -53,7 +63,7 @@ const EventAdder: FC = ({ navigate }) => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.2,
     });
 
     if (!result.cancelled) {
