@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
+import { Text, View, StyleSheet, TextInput, Alert, Image } from "react-native";
 import { EventContext } from "../contexts";
 import {
   Button,
@@ -23,9 +23,10 @@ const Event: FC = (props) => {
   useEffect(() => {
     setIsLoading(true);
     event_list().then((x) => {
-      let event = x.data.events.filter(
+      let event = x.filter(
         (dataPoint: any) => dataPoint._id === eventID
       )[0];
+      console.log('event', event);
       setEventToDisplay(event);
       setIsLoading(false);
     });
@@ -48,7 +49,17 @@ const Event: FC = (props) => {
         <Text>Event Title: {eventToDisplay.event_name}</Text>
         <Text>Date: {unixToDate(eventToDisplay.time)}</Text>
         <Text>Event Details: {eventToDisplay.details}</Text>
-
+        {
+          eventToDisplay.images.map((x,i) => {
+            return (
+              <Image 
+                key={i}
+                style={{width: 100,height: 100,}}
+                source={{uri: `data:image/png;base64,${x.image}`}}
+              />
+            )
+          })
+        }
       </View>
       <View>
         <Button title="I'm interested!" onPress={handleAddInterest} />

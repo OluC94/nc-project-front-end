@@ -11,11 +11,36 @@ export const event_list = async () => {
         authorization: `Bearer ${token}`,
       },
     });
-    return result;
+
+    let withImages = await getEventsImages(result.data.events);
+
+    console.log('withImages', withImages)
+
+    return withImages;
   } catch (error: any) {
     return error.response.data;
   }
 };
+
+
+const getEventsImages = (events) => {
+  const promises = events.map(async (event) => {
+    let images = await spaceApi(`/events/${event._id}/image`, {
+      method: "GET",
+      headers: {
+          'content-type': 'application/json',
+      }
+    });
+
+    event.images = images.data.image;
+
+    console.log('event.images', event.images);
+    
+    return event;
+  });
+
+  return Promise.all(promises);
+}
 
 export const event_post = async data => {
     try {

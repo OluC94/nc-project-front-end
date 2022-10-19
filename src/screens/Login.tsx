@@ -12,10 +12,21 @@ import { Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { get_users, user_login } from "../utils/user_api";
 
+const IS_TESTING = false;
+
 const Login: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
+
+  ////////TESTING/////////////
+  if(IS_TESTING){
+    useEffect(() => {
+      setEmail('mark@gmail.com');
+      setPassword('password');
+    }, [])
+  }    
+  ///////////////////////////
 
 
   interface Props {
@@ -23,6 +34,10 @@ const Login: FC = (props) => {
   }
 
   const handleLogin = async () => {
+
+
+
+    console.log(email)
     if (email && password) {
       user_login({
         email: email,

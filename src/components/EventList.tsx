@@ -14,7 +14,8 @@ const EventList: FC = ({ navigate }) => {
 
   useEffect(() => {
     event_list().then((x) => {
-      setData(x.data.events);
+      // console.log('event_list', x)
+      setData(x);
     });
 
   }, []);
@@ -35,6 +36,7 @@ const EventList: FC = ({ navigate }) => {
                 date={unixToDate(dataPoint.time)}
                 details={dataPoint.details}
                 followers={dataPoint.interested_in.length}
+                images={dataPoint.images}
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
