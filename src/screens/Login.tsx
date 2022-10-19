@@ -20,6 +20,10 @@ const Login: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
 
+  useEffect(()=>{
+    setUsername(null);
+  }, [])
+
 
   ////////TESTING/////////////
   if(IS_TESTING){
