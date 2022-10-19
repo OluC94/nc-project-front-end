@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Button,
-  AsyncStorage,
-} from "react-native";
+import { StyleSheet, Text, SafeAreaView, Button } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { MainNav } from "./routes/MainNav";
 import { EventContext } from "./contexts";
 import axios from "axios";
 import { UserContext } from "./contexts/UserContext";
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 
 export default function App() {
   console.log("running");
@@ -34,11 +29,10 @@ export default function App() {
   );
 
   return (
-    
-      <EventContext.Provider value={{ eventID, setEventID }}>
-        <UserContext.Provider value={{ username, setUsername }}>
-          <MainNav />
-        </UserContext.Provider>
-      </EventContext.Provider>
+    <EventContext.Provider value={{ eventID, setEventID }}>
+      <UserContext.Provider value={{ username, setUsername }}>
+        <MainNav />
+      </UserContext.Provider>
+    </EventContext.Provider>
   );
-};
+}

@@ -6,9 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from "react-native";
-
 import { Button, Input } from "../components";
 import { event_post } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker";
@@ -24,7 +22,7 @@ const EventAdder: FC = ({ navigate }) => {
   const { username } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    const unixDate = dateToUnix(eventDate)
+    const unixDate = dateToUnix(eventDate);
     if (eventName && eventDetails && eventDate) {
       event_post({
         username: username,
