@@ -16,7 +16,6 @@ const SignUp: FC = (props) => {
   const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  // change the console logs below to the set functions
 
   const handleSignUp = async () => {
     if (name && email && password) {

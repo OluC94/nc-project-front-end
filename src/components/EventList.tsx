@@ -14,7 +14,6 @@ const EventList: FC = ({ navigate }) => {
 
   useEffect(() => {
     event_list().then((x) => {
-      // console.log('event_list', x)
       setData(x);
     });
 
