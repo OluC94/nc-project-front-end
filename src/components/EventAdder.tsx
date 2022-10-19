@@ -21,10 +21,12 @@ import {
 event_post
 } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker"
-import { user_login } from "../utils/user_api";
 import { UserContext } from "../contexts/UserContext";
+import { dateToUnix } from "../utils/date";
 
 const EventAdder: FC = (props) => {
+
+  console.log('EventAdder', props)
   const [eventName, setEventName] = useState < string | null> (null);
   const [eventDetails, setEventDetails] = useState < string | null> (null);
   const [eventDate, setEventDate] = useState < string | null> (null);
@@ -33,17 +35,20 @@ const EventAdder: FC = (props) => {
 
   const handleSubmit = async () => {
     if (eventName && eventDetails && eventDate) {
-    
+      
+      const unixTime = dateToUnix(eventDate)
+      console.log(eventDate, image, eventName, eventDetails)
       event_post({
         username: username,
         event_name: eventName,
         details: eventDetails,
-        time: eventDate,
+        time: unixTime,
         image: image,
       }).then(async (result) => {
-        console.log(result);
-        if (result.stats === 200) {
-          props.navigation.navigate("HomeScreen")
+        console.log(result)
+        if (result.status === 201) {
+          console.log(result.status)
+          props.navigation.navigate("HomeScreen");
         }
       }).catch(err => {
         console.log(err);
@@ -59,7 +64,7 @@ const EventAdder: FC = (props) => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.2,
     });
 
     if (!result.cancelled) {

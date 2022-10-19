@@ -48,13 +48,11 @@ export default function BottomBar(){
             })}>
            
 
-            <Tab.Screen name={homeName} component={HomeScreen}/>
+            <Tab.Screen name={homeName} component={HomeScreen} />
             <Tab.Screen name={eventAdder} component={AddEvent}/>
             <Tab.Screen name={event} component={Event}/>
             <Tab.Screen name={planets} component={PlanetScreen}/>
             <Tab.Screen name={signOut} component={Login}/>
-
-
 
             </Tab.Navigator>
     )
