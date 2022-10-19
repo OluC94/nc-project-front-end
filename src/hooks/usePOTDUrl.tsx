@@ -3,7 +3,7 @@ import { dataLoading } from "./useGetPlanets";
 import axios from "axios";
 
 const usePOTDUrl = (): dataLoading => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
