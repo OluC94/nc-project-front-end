@@ -10,5 +10,3 @@ export const dateToUnix = (date: string): number => {
   const parsed = new Date(date);
   return parsed.getTime() / 1000;
 };
-
-console.log(dateToUnix("13:15 11/11/2001"));

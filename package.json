@@ -11,6 +11,8 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.13",
+    "@rneui/base": "^4.0.0-rc.6",
+    "@rneui/themed": "^4.0.0-rc.6",
     "axios": "^1.1.2",
     "expo": "~46.0.13",
     "expo-image-manipulator": "^10.4.0",
