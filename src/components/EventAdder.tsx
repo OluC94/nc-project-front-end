@@ -34,7 +34,6 @@ const EventAdder: FC = ({ navigate }) => {
         image: image,
       })
         .then(async (result) => {
-          console.log(result)
           if (result.status === 201) {
             Alert.alert("Your event has been added!");
             navigate("Home", { screen: "HomeScreen" });
