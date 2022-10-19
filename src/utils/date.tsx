@@ -6,4 +6,9 @@ export const unixToDate = (unixTime: number): String => {
   return `${time} ${date === today ? "Today" : date}`;
 };
 
-console.log(unixToDate(666005356742));
+export const dateToUnix = (date: string): number => {
+  const parsed = new Date(date);
+  return parsed.getTime() / 1000;
+};
+
+console.log(dateToUnix("13:15 11/11/2001"));

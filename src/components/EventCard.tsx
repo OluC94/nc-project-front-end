@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { sampleData } from "../utils";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 
 interface Event {
   title: string;
@@ -13,11 +12,25 @@ interface Event {
 const EventCard: FC<Event> = (props) => {
   return (
     <View>
-      <Text>Event card</Text>
       <Text>{props.title}</Text>
       <Text>Date and time: {props.date}</Text>
       <Text>Info: {props.details}</Text>
-      <Text>{props.followers} followers</Text>
+      {props.followers === 1 ? (
+        <Text>{props.followers} follower</Text>
+      ) : (
+        <Text>{props.followers} followers</Text>
+      )}
+      {
+        props.images.map((x,i) => {
+          return (
+            <Image 
+              key={i}
+              style={{width: 100,height: 100,}}
+              source={{uri: `data:image/png;base64,${x.image}`}}
+            />
+          )
+        })
+      }
     </View>
   );
 };

@@ -25,14 +25,9 @@ const HomeScreen: FC = (props) => {
     }
   };
 
-  // console.log(props.navigation.state.params.name);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-
-      <View>
-        <AddEvent navigate={navigate}/>
-      </View>
       <Text>Hello!</Text>
       <View>
         <EventList navigate={navigate} />

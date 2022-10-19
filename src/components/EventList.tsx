@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState} from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import EventCard from "./EventCard";
 import { EventContext } from "../contexts";
@@ -7,37 +7,35 @@ import spaceApi from "../utils/api";
 import axios from "axios";
 import { unixToDate } from "../utils/date";
 
-
-
-
 const EventList: FC = ({ navigate }) => {
 
-  const [data, setData] = useState([])
+  const { setEventID } = useContext(EventContext);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    event_list().then(x => {
-      setData(x.data.events)
-    })
+    event_list().then((x) => {
+      setData(x);
+    });
+
   }, []);
-  
-  const { setEventID } = useContext(EventContext);
 
   const handleEventSelection = (event_id: string) => {
     setEventID(event_id);
-    navigate("Event");
+    navigate("View Event");
   };
   return (
     <View>
-      <Text>Event Cards:</Text>
+      <Text>Events:</Text>
       <View>
-        {data.map((dataPoint, i) => {
+        {data.map((dataPoint) => {
           return (
             <View key={dataPoint._id}>
               <EventCard
                 title={dataPoint.event_name}
                 date={unixToDate(dataPoint.time)}
                 details={dataPoint.details}
-                followers={4}
+                followers={dataPoint.interested_in.length}
+                images={dataPoint.images}
               />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
