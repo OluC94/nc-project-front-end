@@ -1,5 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
+import { Loading } from "../components/Loading";
 import Planets from "../components/Planets";
 
 const PlanetScreen: FC = (props) => {

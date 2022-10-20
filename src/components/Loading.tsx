@@ -4,8 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 export const Loading: FC = () => {
   return (
     <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator size="large" color="#835188" />
-      <Text>Loading...</Text>
+      <ActivityIndicator size="small" color="#fff" opacity="0.3" />
     </View>
   );
 };

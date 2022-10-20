@@ -38,7 +38,6 @@ const Login: FC = (props) => {
   }
 
   const handleLogin = async () => {
-    console.log(email);
     if (email && password) {
       user_login({
         email: email,

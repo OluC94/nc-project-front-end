@@ -2,11 +2,13 @@ import React, { FC, ReactElement, ReactPropTypes } from "react";
 import { Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useGetPlanets } from "../hooks/useGetPlanets";
+import { Loading } from "./Loading";
 import PlanetCard, { Planet } from "./PlanetCard";
 
 const Planets: FC = (): ReactElement => {
   const { data, loading, error } = useGetPlanets();
-  if (loading) return <Text>Loading...</Text>;
+  if (loading) return <Loading />;
+
   if (error) return <Text>404: Comments not found</Text>;
   return (
     <ScrollView>
