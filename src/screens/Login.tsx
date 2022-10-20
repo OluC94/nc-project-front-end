@@ -20,9 +20,9 @@ const Login: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     setUsername(null);
-  }, [])
+  }, []);
 
   ////////TESTING/////////////
   if (IS_TESTING) {
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   },
   login: {
     color: "#fff",
+    fontSize: 20,
   },
   loginText: {
     flexDirection: "row",

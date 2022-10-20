@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import EventCard from "./EventCard";
 import { EventContext } from "../contexts";
 import { event_list } from "../utils/events_api";
@@ -33,22 +33,23 @@ const EventList: FC = ({ navigate }) => {
   if (isLoading) return <Loading />;
   return (
     <View>
-      <Text>Events:</Text>
+      <Text style={styles.events}>Upcoming Events</Text>
       <View>
         {data.map((dataPoint) => {
           return (
             <View key={dataPoint._id}>
-              <EventCard
-                title={dataPoint.event_name}
-                date={unixToDate(dataPoint.time)}
-                details={dataPoint.details}
-                followers={dataPoint.interested_in.length}
-                images={dataPoint.images}
-              />
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
-                onPress={() => handleEventSelection(dataPoint._id)}>
-                <Text style={{ color: "rgba(81,135,200,1)" }}>More Info</Text>
+
+                onPress={() => handleEventSelection(dataPoint._id)}
+              >
+                <EventCard
+                  title={dataPoint.event_name}
+                  date={unixToDate(dataPoint.time)}
+                  details={dataPoint.details}
+                  followers={dataPoint.interested_in.length}
+                  images={dataPoint.images}
+                />
               </TouchableOpacity>
             </View>
           );
@@ -59,3 +60,14 @@ const EventList: FC = ({ navigate }) => {
 };
 
 export default EventList;
+
+const styles = StyleSheet.create({
+  events: {
+    fontWeight: "bold",
+    fontSize: 30,
+    margin: 10,
+    padding: 10,
+    paddingBottom: 0,
+    color: "#fff",
+  },
+});
