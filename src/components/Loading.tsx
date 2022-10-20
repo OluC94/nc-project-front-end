@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Text } from "react-native";
+import { ActivityIndicator } from "react-native";
 
 export const Loading: FC = () => {
-  return <Text>Loading...</Text>;
+  return <ActivityIndicator size="large" color="#835188" />;
 };
