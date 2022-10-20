@@ -20,31 +20,25 @@ const Login: FC = (props) => {
   const [password, setPassword] = useState<string | null>(null);
   const { setUsername } = useContext(UserContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     setUsername(null);
-  }, [])
-
+  }, []);
 
   ////////TESTING/////////////
-  if(IS_TESTING){
+  if (IS_TESTING) {
     useEffect(() => {
-      setEmail('mark@gmail.com');
-      setPassword('password');
-    }, [])
-  }    
+      setEmail("mark@gmail.com");
+      setPassword("password");
+    }, []);
+  }
   ///////////////////////////
-
-
 
   interface Props {
     navigation: any;
   }
 
   const handleLogin = async () => {
-
-
-
-    console.log(email)
+    console.log(email);
     if (email && password) {
       user_login({
         email: email,
@@ -124,6 +118,7 @@ const styles = StyleSheet.create({
   },
   login: {
     color: "#fff",
+    fontSize: 20,
   },
   loginText: {
     flexDirection: "row",

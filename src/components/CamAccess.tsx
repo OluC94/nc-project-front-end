@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 const CamAccess: FC = () => {
@@ -21,10 +21,19 @@ const CamAccess: FC = () => {
   return (
     <View>
       <TouchableOpacity
-        style={{ marginHorizontal: 5 }}
+        style={styles.addImageButton}
         onPress={getImagesFromGallery}
       >
-        <Text style={{ color: "rgba(81,135,200,1)" }}>Add your images</Text>
+        <Text
+          style={{ alignSelf: "center", textAlign: "center", color: "#fff" }}
+        >
+          <Image
+            style={styles.camera}
+            source={require("../../assets/cameraicon.png")}
+          />
+          {"   "}
+          Add an image
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -36,5 +45,19 @@ const styles = StyleSheet.create({
   loginText: {
     flexDirection: "row",
     marginVertical: 20,
+  },
+  camera: {
+    flexDirection: "row",
+    width: 12,
+    height: undefined,
+    aspectRatio: 1,
+  },
+  addImageButton: {
+    backgroundColor: "#1a2c54",
+    marginRight: 125,
+    marginLeft: 125,
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 10,
   },
 });

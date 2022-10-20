@@ -24,7 +24,7 @@ const EventAdder: FC = ({ navigate }) => {
   const { username } = useContext(UserContext);
 
   const handleSubmit = async () => {
-    const unixDate = dateToUnix(eventDate)
+    const unixDate = dateToUnix(eventDate);
     if (eventName && eventDetails && eventDate) {
       event_post({
         username: username,
@@ -64,7 +64,7 @@ const EventAdder: FC = ({ navigate }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text> Add Event</Text>
+      <Text style={styles.text}>Add an Event</Text>
       <Input
         placeholder="Event Name Here.."
         onChangeText={(text) => setEventName(text)}
@@ -81,9 +81,11 @@ const EventAdder: FC = ({ navigate }) => {
         style={{ marginHorizontal: 5 }}
         onPress={getImagesFromGallery}
       >
-        <Text style={{ color: "rgba(81,135,200,1)" }}>upload Images</Text>
+        <Text style={{ margin: 5, color: "#2E0F38" }}>Upload Images</Text>
       </TouchableOpacity>
-      <Button title="Submit" onPress={handleSubmit} />
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <Text style={{ color: "#fff" }}>Submit</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -93,9 +95,24 @@ export default EventAdder;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#8351A8",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    color: "#fff",
+    fontSize: 20,
+  },
+  submitButton: {
+    marginRight: 60,
+    marginLeft: 60,
+    marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    backgroundColor: "#2e0f38",
+    borderRadius: 10,
   },
   eventText: { flexDirection: "row", marginVertical: 20 },
 });

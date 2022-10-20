@@ -6,6 +6,7 @@ import {
   View,
   AsyncStorage,
   ScrollView,
+  Image,
 } from "react-native";
 import { Button, EventList } from "../components";
 import { useState } from "react";
@@ -28,12 +29,13 @@ const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <Text>Hello!</Text>
-      <View>
-        <EventList navigate={navigate} />
-      </View>
-      <Button title="Sign Out" onPress={handleSignOut}
-      />
+        <View>
+          <EventList navigate={navigate} />
+        </View>
+        <Image
+          style={styles.planet}
+          source={require("../../assets/planeticonseethru.png")}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -44,8 +46,14 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#8351a8",
     alignItems: "center",
     justifyContent: "center",
+  },
+  planet: {
+    alignSelf: "center",
+    margin: 25,
+    width: 35,
+    height: 35,
   },
 });
