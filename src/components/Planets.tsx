@@ -10,14 +10,14 @@ const Planets: FC = (): ReactElement => {
   if (error) return <Text>404: Comments not found</Text>;
   return (
     <ScrollView>
-    <View>
-      {data &&
-        data.map((planet) => {
-          if (planet.name !== "Earth") {
-            return <PlanetCard planet={planet} />;
-          }
-        })}
-    </View>
+      <View>
+        {data &&
+          data.map((planet: Planet) => {
+            if (planet.name !== "Earth") {
+              return <PlanetCard key={planet.name} planet={planet} />;
+            }
+          })}
+      </View>
     </ScrollView>
   );
 };

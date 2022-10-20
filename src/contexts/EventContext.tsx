@@ -1,7 +1,8 @@
 import { createContext } from "react";
 
 interface EventContextInterface {
-  eventID: string | null;
+  eventID: string;
+  setEventID?: any;
 }
 
-export const EventContext = createContext({} as EventContextInterface | null);
+export const EventContext = createContext({} as EventContextInterface);

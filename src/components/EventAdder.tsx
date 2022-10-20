@@ -6,9 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from "react-native";
-
 import { Button, Input } from "../components";
 import { event_post } from "../utils/events_api";
 import * as ImagePicker from "expo-image-picker";

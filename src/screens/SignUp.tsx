@@ -7,8 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Input } from "../components";
 import { user_register, get_users } from "../utils/user_api";
 

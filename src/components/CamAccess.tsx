@@ -1,9 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, ReactElement, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-const CamAccess: FC = () => {
-  const [image, setImage] = useState<any>(null);
+const CamAccess: FC = (): ReactElement => {
+  const [, setImage] = useState<any>(null);
 
   const getImagesFromGallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

@@ -40,6 +40,7 @@ const EventList: FC = ({ navigate }) => {
             <View key={dataPoint._id}>
               <TouchableOpacity
                 style={{ marginHorizontal: 5 }}
+
                 onPress={() => handleEventSelection(dataPoint._id)}
               >
                 <EventCard

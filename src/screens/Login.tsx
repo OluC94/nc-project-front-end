@@ -7,8 +7,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, Input } from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { get_users, user_login } from "../utils/user_api";

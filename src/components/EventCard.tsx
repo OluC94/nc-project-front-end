@@ -8,9 +8,17 @@ interface Event {
   followers: number;
   navigation?: any;
 }
+interface EventProps {
+  title: string;
+  date: string;
+  details: string;
+  followers: number;
+  images: any;
+}
 
-const EventCard: FC<Event> = (props) => {
+const EventCard: FC<EventProps> = (props) => {
   return (
+
     <View style={styles.container}>
       {props.images.map((x, i) => {
         return (
