@@ -1,8 +1,19 @@
 import React, { FC, useContext } from "react";
-import { SafeAreaView, Text, StyleSheet, View, ScrollView } from "react-native";
+
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  AsyncStorage,
+  ScrollView,
+  Image,
+} from "react-native";
+import { Button, EventList, PicOfTheDay } from "../components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Button, EventList, PicOfTheDay } from "../components";
+
+
 import { useState } from "react";
 import { EventContext } from "../contexts";
 import AddEvent from "./AddEvent";
@@ -23,6 +34,13 @@ const HomeScreen: FC = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        <View>
+          <EventList navigate={navigate} />
+        </View>
+        <Image
+          style={styles.planet}
+          source={require("../../assets/planeticonseethru.png")}
+        />
         <Text>Hello!</Text>
         <View>
           <Text>NASA's Picture of the day:</Text>
@@ -42,8 +60,14 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#8351a8",
     alignItems: "center",
     justifyContent: "center",
+  },
+  planet: {
+    alignSelf: "center",
+    margin: 25,
+    width: 35,
+    height: 35,
   },
 });

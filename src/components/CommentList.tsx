@@ -1,5 +1,12 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { EventContext } from "../contexts";
 import {
   addComment,
@@ -87,24 +94,42 @@ const CommentList: FC = () => {
         placeholder="Add your comment..."
         onChangeText={(text) => setNewComm(text)}
       />
-      <Button title="Add comment" onPress={handleAddComm} />
+      <TouchableOpacity style={styles.addCommentButton} onPress={handleAddComm}>
+        <Text style={{ textAlign: "center", color: "#fff" }}>Add comment</Text>
+      </TouchableOpacity>
       {comments.length === 0 ? (
-        <Text>No comments yet</Text>
+        <View style={styles.commentSection}>
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              color: "#fff",
+              margin: 10,
+              padding: 5,
+            }}
+          >
+            No comments added
+          </Text>
+          <Image
+            style={styles.sad}
+            source={require("../../assets/sadicon.png")}
+          />
+        </View>
       ) : (
-        <View>
-          <Text>Comments</Text>
+        <View style={styles.commentSection}>
+          <Text style={styles.comment}>Comments</Text>
           {comments.map((comment: any) => {
             return (
-              <View key={comment._id}>
-                <Text>User: {[comment.username, "\n"]}</Text>
-                <Text>{[comment.body, "\n"]}</Text>
-                <Text>{["Posted: ", unixToDate(comment.time)]}</Text>
+              <View style={styles.commentCard} key={comment._id}>
+                <Text style={styles.commentBody}>{[comment.body]}</Text>
+                <Text style={styles.commentDetails}>
+                  {[comment.username]} @ {[unixToDate(comment.time)]}
+                </Text>
                 {username === comment.username ? (
                   <TouchableOpacity
-                    onPress={() => handleDeleteComm(eventID, comment._id)}>
-                    <Text style={{ color: "rgba(81,135,200,1)" }}>
-                      Delete comment
-                    </Text>
+                    onPress={() => handleDeleteComm(eventID, comment._id)}
+                  >
+                    <Text style={styles.delete}>Delete comment</Text>
                   </TouchableOpacity>
                 ) : null}
               </View>
@@ -117,3 +142,60 @@ const CommentList: FC = () => {
 };
 
 export default CommentList;
+
+const styles = StyleSheet.create({
+  addCommentButton: {
+    backgroundColor: "#1a2c54",
+    marginRight: 125,
+    marginLeft: 125,
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 10,
+  },
+  commentSection: {
+    backgroundColor: "#1a2c54",
+    margin: 5,
+    paddingTop: 2,
+    paddingBottom: 11,
+    borderRadius: 10,
+  },
+  comment: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    padding: 5,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  commentCard: {
+    backgroundColor: "#5a6bad",
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    padding: 5,
+    borderRadius: 10,
+  },
+  commentBody: {
+    color: "#fff",
+    paddingTop: 5,
+    paddingLeft: 5,
+  },
+  commentDetails: {
+    paddingTop: 5,
+    paddingLeft: 5,
+    fontStyle: "italic",
+    color: "#1a2c54",
+  },
+  delete: {
+    paddingLeft: 5,
+    color: "#232a45",
+  },
+  sad: {
+    opacity: 0.5,
+    width: 75,
+    height: 75,
+    alignSelf: "center",
+    margin: 10,
+    padding: 10,
+  },
+});
