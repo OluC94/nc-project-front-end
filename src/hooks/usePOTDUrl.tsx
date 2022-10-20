@@ -12,7 +12,7 @@ const usePOTDUrl = (): dataLoading => {
       setLoading(true);
       try {
         const response = await axios.get(apiUrl);
-        setData(response.data.url);
+        setData(response.data);
       } catch (error: any | void) {
         setError(error);
       } finally {
