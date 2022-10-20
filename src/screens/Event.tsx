@@ -1,17 +1,31 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Text, View, StyleSheet, Alert, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Alert,
+  Image,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 import { EventContext } from "../contexts";
-import { Button, CamAccess, CommentList } from "../components";
+import {
+  Button,
+  CamAccess,
+  CommentList,
+  EventCard,
+  Input,
+  MoonLanding,
+} from "../components";
 import { UserContext } from "../contexts/UserContext";
 import { addInterest, event_list } from "../utils/events_api";
 import { unixToDate } from "../utils/date";
 import { Loading } from "../components/Loading";
-import { SafeAreaView, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import MoonLanding from "../components/MoonLanding";
-
 
 const Event: FC = (props) => {
+  const [newComm, setNewComm] = useState<string | null>(null);
   const { eventID } = useContext(EventContext);
   const { username } = useContext(UserContext);
   const [eventToDisplay, setEventToDisplay] = useState([]);
@@ -19,13 +33,15 @@ const Event: FC = (props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    event_list().then((x) => {
-      let event = x.filter((dataPoint: any) => dataPoint._id === eventID)[0];
-      setEventToDisplay(event);
-      setIsLoading(false);
-    })
-      .catch((error) => {
-        console.log(error);
+    event_list()
+      .then((x) => {
+        let event = x.filter((dataPoint: any) => dataPoint._id === eventID)[0];
+        console.log("event", event);
+        setEventToDisplay(event);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [eventID]);
 
@@ -40,6 +56,10 @@ const Event: FC = (props) => {
   };
 
   if (isLoading) return <Loading />;
+  // if (!eventID) {
+  //   return <MoonLanding />;
+  // }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -49,7 +69,6 @@ const Event: FC = (props) => {
               <Image
                 key={i}
                 style={{ width: "100%", height: undefined, aspectRatio: 1 }}
-                style={{ width: 100, height: 100 }}
                 source={{ uri: `data:image/png;base64,${x.image}` }}
               />
             );
@@ -63,8 +82,7 @@ const Event: FC = (props) => {
             <Text style={styles.interestText}>I'm interested!</Text>
           </TouchableOpacity>
         </View>
-        <View>
-        </View>
+        <View></View>
         <CamAccess />
         <View>
           <CommentList />
@@ -72,11 +90,11 @@ const Event: FC = (props) => {
       </ScrollView>
     </SafeAreaView>
   );
-      </View>
-    );
-  }
-  return <MoonLanding />;
 };
+//       </View>
+//     );
+//   }
+// };
 
 export default Event;
 

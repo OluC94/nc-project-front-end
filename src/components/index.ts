@@ -6,7 +6,7 @@ import EventCard from "./EventCard";
 import CamAccess from "./CamAccess";
 import CommentList from "./CommentList";
 import PicOfTheDay from "./PicOfTheDay";
-
+import MoonLanding from "./MoonLanding";
 export {
   Input,
   Button,
@@ -16,4 +16,5 @@ export {
   CamAccess,
   CommentList,
   PicOfTheDay,
+  MoonLanding,
 };
